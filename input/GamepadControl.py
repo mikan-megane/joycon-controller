@@ -47,7 +47,15 @@ def init_gamepad(switch_controller, configuration={}):
             trigger_below = mapped_button.get("trigger_below", 0)
             trigger_above = mapped_button.get("trigger_above", 100)
 
-            pressed = mapped_button.get('pct') * 100 > trigger_above or mapped_button.get('pct') * 100 < trigger_below
+            if not mapped_button.get('digital'):
+                pressed = mapped_button.get('pct') * 100 > trigger_above or mapped_button.get('pct') * 100 < trigger_below
+            else:
+                pressed = False
+                for k,v in mapped_button.get('digital').items():
+                    if event.state == k:
+                        pressed = True
+                        mapped_button['input'] = v
+                        break
             if button_last_state.get(event.code) is None:
                 button_last_state[event.code] = pressed
 
@@ -55,7 +63,16 @@ def init_gamepad(switch_controller, configuration={}):
                 mapped_button['release'] = not pressed
                 mapped_button['buttons'] = mapped_button.get('input')
             button_last_state[event.code] = pressed
+        else:
+            mapped_button['pct'] = (event.state+32768) / (32768*2)
         await switch_controller.handle(**mapped_button)
+        if mapped_button.get('digital') and pressed is False:
+            mapped_button['release'] = True
+            for v in mapped_button.get('digital').values():
+                if mapped_button.get('input') != v:
+                    mapped_button['input'] = v
+                    mapped_button['buttons'] = mapped_button.get('input')
+                    await switch_controller.handle(**mapped_button)
 
     async def handle_button_press(mapped_button, event):
         """Send button presses to switch"""

@@ -13,7 +13,7 @@ button_mapping:
       invert: True
       stick: left
     BTN_THUMBL:
-      input: l-stick
+      input: l_stick
 
     ABS_RX:
       input: h
@@ -25,21 +25,23 @@ button_mapping:
     BTN_THUMBR:
       input: r_stick
 
-    BTN_DPAD_DOWN:
+    ABS_HAT0Y:
       input: down
-    BTN_DPAD_LEFT:
-      input: left
-    BTN_DPAD_RIGHT:
+      digital: 
+        1: down
+        -1: up
+    ABS_HAT0X:
       input: right
-    BTN_DPAD_UP:
-      input: up
+      digital:
+        1: right
+        -1: left
 
     BTN_NORTH:
       input: y
     BTN_EAST:
-      input: b
-    BTN_SOUTH:
       input: a
+    BTN_SOUTH:
+      input: b
     BTN_WEST:
       input: x
 
@@ -58,45 +60,4 @@ button_mapping:
       input: r
     BTN_TR2:
       input: zr
-
-  keyboard:
-    '2':
-      input: down
-      stick: right
-    '4':
-      input: left
-      stick: right
-    '6':
-      input: right
-      stick: right
-    '8':
-      input: up
-      stick: right
-
-    e:
-      input: y
-    n:
-      input: nfc
-
-    backspace:
-      input: b
-    enter:
-      input: a
-    shift:
-      input: b
-    space:
-      input: x
-
-    w:
-      input: up
-      stick: left
-    a:
-      input: left
-      stick: left
-    s:
-      input: down
-      stick: left
-    d:
-      input: right
-      stick: left
 reconnect_bt_addr:

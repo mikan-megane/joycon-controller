@@ -1,3 +1,4 @@
 *.bin
 __pycache__
 replay/*.yaml
+config.yml
