@@ -1,13 +1,9 @@
 button_mapping:
   controller:
     ABS_RZ:
-      input: zr
-      trigger_below: 100
-      trigger_above: 0
+      input: ''
     ABS_Z:
-      input: zl
-      trigger_below: 100
-      trigger_above: 0
+      input: ''
 
     ABS_X:
       input: h
@@ -58,6 +54,10 @@ button_mapping:
 
     BTN_TL:
       input: l
+    BTN_TL2:
+      input: zl
     BTN_TR:
       input: r
-reconnect_bt_addr:
+    BTN_TR2:
+      input: zr
+reconnect_bt_addr: E8:DA:20:47:C9:FF

@@ -48,7 +48,7 @@ def init_gamepad(switch_controller, configuration={}):
             trigger_above = mapped_button.get("trigger_above", 100)
 
             if not mapped_button.get('digital'):
-                pressed = mapped_button.get('pct') * 100 > trigger_above or mapped_button.get('pct') * 100 < trigger_below
+                pressed = mapped_button.get('pct') * 100 > trigger_above and mapped_button.get('pct') * 100 <= trigger_below
             else:
                 pressed = False
                 for k,v in mapped_button.get('digital').items():
